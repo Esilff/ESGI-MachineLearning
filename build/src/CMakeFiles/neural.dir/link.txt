@@ -1,2 +1,0 @@
-C:\MinGW\bin\ar.exe qc libneural.a CMakeFiles/neural.dir/neural/neuron.cpp.obj
-C:\MinGW\bin\ranlib.exe libneural.a

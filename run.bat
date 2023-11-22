@@ -2,19 +2,15 @@
 
 color
 
-del /Q "build\*"
-
-for /D %%I in ("build\*") do rd /S /Q "%%I"
+@cls
 
 echo Building CMake project
 
 cmake -B ./build -S ./ -G "MinGW Makefiles"
 
-cd build
+cmake --build ./build --target all -- -j12
 
-make
-
-for /f "usebackq delims=" %%I in ("project_name.txt") do (
+for /f "usebackq delims=" %%I in ("./build/project_name.txt") do (
     set "string=%%I"
 )
 
@@ -25,4 +21,4 @@ for /f "tokens=1,2 delims=/" %%A in ("%string%") do (
 
 echo Running %PROJECT_NAME%
 
-%EXEC_NAME%
+.\build\%EXEC_NAME%
