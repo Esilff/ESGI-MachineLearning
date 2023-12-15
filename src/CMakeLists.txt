@@ -12,7 +12,7 @@ target_sources(${PROJECT_NAME} PRIVATE main.cpp)
 
 #==================== Adding project libraries ====================
 
-#add_subdirectory(cpsWindow)
+add_subdirectory(neuro)
 
 #==================== Targeting libraries in src ====================
 
