@@ -16,7 +16,7 @@ add_subdirectory(neuro)
 
 #==================== Targeting libraries in src ====================
 
-#target_link_libraries(${PROJECT_NAME} glfw IMGUI cpsWindow)
+target_link_libraries(${PROJECT_NAME} neuro)
 
 #==================== Setting the target location at the root of the build directory ====================
 
