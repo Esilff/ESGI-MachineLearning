@@ -32,4 +32,4 @@ file(WRITE "${CMAKE_BINARY_DIR}/project_name.txt" "${EXECUTABLE_NAME}/${PROJECT_
 
 #==================== Adding personal code ====================
 
-add_subdirectory(src)
+add_subdirectory(neuroCore)
