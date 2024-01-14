@@ -28,7 +28,7 @@ file(WRITE "${CMAKE_BINARY_DIR}/project_name.txt" "${EXECUTABLE_NAME}/${PROJECT_
 
 #==================== Adding libs ====================
 
-#add_subdirectory(libs)
+add_subdirectory(libs)
 
 #==================== Adding personal code ====================
 
