@@ -14,6 +14,11 @@ public:
     ImageETL(int width, int height) : globalWidth(width), globalHeight(height) {}
     void extract(const std::string&, int label);
 
+    int inputSize();
+    std::vector<Eigen::MatrixXd> inputs();
+
+    std::vector<int> getLabels();
+
 private:
     std::vector<Eigen::MatrixXd> images;
     std::vector<int> labels;

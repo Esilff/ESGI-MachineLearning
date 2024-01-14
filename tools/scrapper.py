@@ -10,8 +10,8 @@ def download_images(url, count):
     images = soup.find_all('img', {'src': re.compile('gstatic.com')})
 
     # Create directory for saving images if it does not exist
-    if not os.path.exists('downloaded_images'):
-        os.makedirs('downloaded_images')
+    if not os.path.exists('moba'):
+        os.makedirs('moba')
 
     for i, img in enumerate(images[:count]):
         try:
@@ -24,6 +24,6 @@ def download_images(url, count):
             print(f'Error downloading image {i+1}: {e}')
 
 # Example usage
-url = "https://www.google.com/search?client=opera-gx&hs=zN0&sca_esv=598104924&sxsrf=ACQVn095Xhve27bpKDTTgLPvqolK5yQX8A:1705142022370&q=moba&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjlr6OEldqDAxXGVKQEHfQIBlwQ0pQJegQICBAB&biw=1879&bih=977&dpr=1"  # Replace with your Google Images URL
+url = "https://www.google.com/search?client=opera-gx&hs=pqn&sca_esv=598412653&sxsrf=ACQVn0-w1rAuy7rALdq83r787VRmgbUG6g:1705252719130&q=rts+game&tbm=isch&source=lnms&sa=X&ved=2ahUKEwiCuc20sd2DAxVPcKQEHeddCRkQ0pQJegQIDhAB&biw=1879&bih=977&dpr=1"
 counter = 1000 # Replace with the number of images you want to download
 download_images(url, counter)

@@ -40,3 +40,15 @@ Eigen::MatrixXd ImageETL::processImage(const std::string &filePath) {
     stbi_image_free(data);
     return resizedImage;
 }
+
+int ImageETL::inputSize() {
+    return globalHeight * globalWidth;
+}
+
+std::vector<Eigen::MatrixXd> ImageETL::inputs() {
+    return images;
+}
+
+std::vector<int> ImageETL::getLabels() {
+    return labels;
+}

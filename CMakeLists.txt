@@ -12,13 +12,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 
 set(EXECUTABLE_NAME "${PROJECT_NAME}-${PROJECT_VERSION}")
 
-option(NEURO_SHARED_BUILD "Use the SeekR library in shared mode." ON)
+option(NEURO_SHARED_BUILD "Use the SeekR library in shared mode." OFF)
 
 #==================== Adding compile definitions ====================
 
 add_compile_definitions(APP_NAME="${PROJECT_NAME}-${PROJECT_VERSION}")
 
 add_compile_definitions(SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
+
 
 #==================== Storing project name in txt file ====================
 # This is done so that the run.bat can run seamlessly even if the project name is changed
@@ -33,3 +34,9 @@ add_subdirectory(libs)
 #==================== Adding personal code ====================
 
 add_subdirectory(neuroCore)
+
+
+add_executable(${PROJECT_NAME} neuroCore/main.cpp)
+
+
+target_link_libraries(${PROJECT_NAME} PUBLIC neuroCore)
