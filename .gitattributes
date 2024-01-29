@@ -1,0 +1,3 @@
+#==================== Ignoring the libs folder and it's content from language statistics ====================
+
+libs/** linguist-vendored
