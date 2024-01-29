@@ -33,10 +33,10 @@ add_subdirectory(libs)
 
 #==================== Adding personal code ====================
 
-add_subdirectory(neuroCore)
+add_subdirectory(neuro)
 
 
-add_executable(${PROJECT_NAME} neuroCore/main.cpp)
+#add_executable(${PROJECT_NAME} neuroCore/main.cpp)
 
 
-target_link_libraries(${PROJECT_NAME} PUBLIC neuroCore)
+#target_link_libraries(${PROJECT_NAME} PUBLIC neuroCore)
