@@ -4,10 +4,11 @@
 
 class LinearRegression {
 public:
-    LinearRegression(Eigen::MatrixXf X, Eigen::VectorXi Y);
+    LinearRegression(Eigen::MatrixXf X, Eigen::VectorXi Y, float alpha, int iterations);
+
+    void train();
 
 
-    auto mean();
 
 private:
     Eigen::MatrixXf X;
@@ -16,6 +17,10 @@ private:
     Eigen::MatrixXf theta;
     float alpha;
     int iterations;
+
+    float cost();
+    Eigen::MatrixXf gradientDescent();
+
 
 
 };

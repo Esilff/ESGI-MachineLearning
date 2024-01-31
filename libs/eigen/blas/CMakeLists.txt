@@ -3,12 +3,12 @@ project(EigenBlas CXX)
 
 include(CheckLanguage)
 check_language(fortran)
-if(CMAKE_Fortran_COMPILER)
-  enable_language(fortran)
-  set(EIGEN_Fortran_COMPILER_WORKS ON)
-else()
+#if(CMAKE_Fortran_COMPILER)
+#  enable_language(fortran)
+#  set(EIGEN_Fortran_COMPILER_WORKS ON)
+#else()
   set(EIGEN_Fortran_COMPILER_WORKS OFF)
-endif()
+#endif()
 
 add_custom_target(blas)
 
