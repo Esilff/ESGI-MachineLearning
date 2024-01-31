@@ -7,10 +7,15 @@ public:
     LinearRegression();
 
 
-    float cost();
+    auto mean();
+
 private:
     Eigen::MatrixXf X;
     Eigen::VectorXi Y;
+
+    Eigen::MatrixXf theta;
+    float alpha;
+    int iterations;
 
 
 };

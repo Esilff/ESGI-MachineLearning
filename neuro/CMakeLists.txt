@@ -23,4 +23,4 @@ target_include_directories(${NEURO_TARGET_NAME}
         PUBLIC ${CMAKE_SOURCE_DIR}/libs/stb
 )
 
-target_link_libraries(${NEURO_TARGET_NAME} PUBLIC Eigen)
+target_link_libraries(${NEURO_TARGET_NAME} PUBLIC eigen)
