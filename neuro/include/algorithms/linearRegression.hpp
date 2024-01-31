@@ -4,7 +4,7 @@
 
 class LinearRegression {
 public:
-    LinearRegression();
+    LinearRegression(Eigen::MatrixXf X, Eigen::VectorXi Y);
 
 
     auto mean();
