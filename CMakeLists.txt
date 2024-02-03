@@ -8,6 +8,9 @@ project(ESGI-MachineLearning VERSION 0.0.0 LANGUAGES C CXX)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+
+
 #==================== Setting variables ====================
 
 set(EXECUTABLE_NAME "${PROJECT_NAME}-${PROJECT_VERSION}")
@@ -27,16 +30,11 @@ add_compile_definitions(SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 
 file(WRITE "${CMAKE_BINARY_DIR}/project_name.txt" "${EXECUTABLE_NAME}/${PROJECT_NAME}")
 
-#==================== Adding libs ====================
-
-add_subdirectory(libs)
-
 #==================== Adding personal code ====================
 
 add_subdirectory(neuro)
 
 
-#add_executable(${PROJECT_NAME} neuroCore/main.cpp)
+add_executable(${PROJECT_NAME} main.cpp)
 
-
-#target_link_libraries(${PROJECT_NAME} PUBLIC neuroCore)
+target_link_libraries(${PROJECT_NAME} PUBLIC neuro)

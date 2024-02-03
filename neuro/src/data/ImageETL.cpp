@@ -1,13 +1,17 @@
+#include <utility>
+
 #include "data/ImageETL.hpp"
-#define STBI_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_RESIZE_IMPLEMENTATION
 #include "stb_image.h"
 #include "stb_image_resize2.h"
 
+
 ImageDataset::ImageDataset(std::vector<std::vector<float>> images, std::vector<int> labels, std::map<std::string, int> categories,
-                           bool hasIntercept) : categories(categories) {
+                           bool hasIntercept) : categories(std::move(categories)) {
     int cols = hasIntercept ? images[0].size() + 1 : images[0].size();
 
-    X.resize(images.size(), cols);
+    X.resize((long long) images.size(), cols);
     for (int i = 0; i < images.size(); ++i) {
         if (hasIntercept) {
             X(i, 0) = 1.0f;
@@ -16,10 +20,19 @@ ImageDataset::ImageDataset(std::vector<std::vector<float>> images, std::vector<i
             X(i, hasIntercept ? j + 1 : j) = images[i][j];
         }
     }
-    Y.resize(labels.size());
+    Y.resize((long long) labels.size());
     for (int i = 0; i < labels.size();i++) {
-        Y(i) = labels[i];
+        Y(i) = (float)labels[i];
     }
+}
+
+std::string ImageDataset::getCategory(int value) {
+    for (const auto& pair : categories) {
+        if (pair.second == value) {
+            return pair.first;
+        }
+    }
+    return "";
 }
 
 ImageETL::ImageETL(int width, int height) {
@@ -62,4 +75,16 @@ std::vector<float> ImageETL::processImage(const std::string &imagePath) {
 ImageDataset ImageETL::toEigen(bool withIntercept) {
     return {images,labels,categories, withIntercept};
 }
+
+ImageDataset* ImageETL::toEigenPtr(bool withIntercept) {
+    return new ImageDataset {images,labels,categories, withIntercept};
+}
+
+Eigen::MatrixXf ImageETL::getProcessedImage(const std::string &path) {
+    std::vector<float> image = processImage(path);
+    Eigen::Map<Eigen::MatrixXf> imageMatrix(image.data(), 1, image.size());
+    return imageMatrix;
+}
+
+
 
