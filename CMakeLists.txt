@@ -5,10 +5,10 @@ project(ESGI-MachineLearning VERSION 0.0.0 LANGUAGES C CXX)
 
 #==================== Setting compiler flags ====================
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
-
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 #==================== Setting variables ====================

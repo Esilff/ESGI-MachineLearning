@@ -20,3 +20,18 @@ void* getImageDataset(const char** paths, const char** categories) {
     }
     return etl.toEigenPtr(true);
 }
+
+void* trainLinearRegression(void* dataset, float alpha, int iterations) {
+    ImageDataset* set = static_cast<ImageDataset*>(dataset);
+    LinearRegression * lr = new LinearRegression(set->X, set->Y, alpha, iterations);
+    lr->train();
+    return lr;
+}
+
+void predictLinearRegression(void* model, void* dataset, const char* imagePath) {
+    ImageETL etl = ImageETL(150,150);
+    ImageDataset* data = static_cast<ImageDataset*>(dataset);
+    LinearRegression* lr = static_cast<LinearRegression*>(model);
+    int prediction = lr->predict(etl.getProcessedImage(imagePath))[0];
+    std::cout << "Moba image was predicted as a : " << data->getCategory(prediction) << " the categoryId is " << prediction << std::endl;
+}

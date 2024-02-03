@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include "data/ImageETL.hpp"
+#include "algorithms/linearRegression.hpp"
 
 extern "C" {
 
@@ -11,6 +12,10 @@ extern "C" {
     NEURO_API const char* helloNeuro();
 
     NEURO_API void* getImageDataset(const char**, const char**);
+
+    NEURO_API void* trainLinearRegression(void*, float, int);
+
+    NEURO_API void predictLinearRegression(void*,void*, const char*);
 };
 
 #endif
