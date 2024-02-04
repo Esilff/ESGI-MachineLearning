@@ -15,7 +15,7 @@ extern "C" {
 
     NEURO_API void* trainLinearRegression(void*, float, int);
 
-    NEURO_API void predictLinearRegression(void*,void*, const char*);
+    NEURO_API const char* predictLinearRegression(void*,void*, const char*);
 };
 
 #endif

@@ -8,7 +8,7 @@ set(NEURO_TARGET_SOURCES
 option(NEURO_SHARED_BUILD "Use the Neuro lib in share mode." ON)
 
 message(STATUS "Building Neuro as SHARED library.")
-add_library(${NEURO_TARGET_NAME} SHARED ${NEURO_TARGET_SOURCES})
+add_library(${NEURO_TARGET_NAME} STATIC ${NEURO_TARGET_SOURCES})
 
 include(GenerateExportHeader)
 generate_export_header(${NEURO_TARGET_NAME}

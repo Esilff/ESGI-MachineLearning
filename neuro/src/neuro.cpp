@@ -28,10 +28,12 @@ void* trainLinearRegression(void* dataset, float alpha, int iterations) {
     return lr;
 }
 
-void predictLinearRegression(void* model, void* dataset, const char* imagePath) {
+const char* predictLinearRegression(void* model, void* dataset, const char* imagePath) {
     ImageETL etl = ImageETL(150,150);
     ImageDataset* data = static_cast<ImageDataset*>(dataset);
     LinearRegression* lr = static_cast<LinearRegression*>(model);
     int prediction = lr->predict(etl.getProcessedImage(imagePath))[0];
-    std::cout << "Moba image was predicted as a : " << data->getCategory(prediction) << " the categoryId is " << prediction << std::endl;
+    static std::string category;
+    category = data->getCategory(prediction);
+    return category.c_str();
 }

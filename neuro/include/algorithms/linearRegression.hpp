@@ -1,16 +1,19 @@
 #ifndef N_LINEARREGRESSION_HPP
 #define N_LINEARREGRESSION_HPP
 #include <Dense>
-
-extern "C" {
+#include <fstream>
 
 class LinearRegression {
 public:
+    LinearRegression(const std::string& modelPath);
     LinearRegression(const Eigen::MatrixXf &X, Eigen::VectorXf Y, float alpha, int iterations);
 
     void train();
 
     Eigen::VectorXf predict(Eigen::MatrixXf input);
+
+    void saveModel(const std::string& path);
+    void loadModel(const std::string& path);
 
 
 private:
@@ -26,7 +29,6 @@ private:
     Eigen::MatrixXf gradientDescent();
 
 
-    };
 };
 
 #endif

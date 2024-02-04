@@ -2,6 +2,10 @@
 #include <utility>
 #include "algorithms/linearRegression.hpp"
 
+LinearRegression::LinearRegression(const std::string &modelPath) {
+    loadModel(modelPath);
+}
+
 LinearRegression::LinearRegression(const Eigen::MatrixXf& X, Eigen::VectorXf Y, float alpha, int iterations) :
 X(X), Y(std::move(Y)), alpha(alpha), iterations(iterations) {
     theta = Eigen::MatrixXf::Zero(X.cols(), 1);
@@ -17,6 +21,41 @@ Eigen::VectorXf LinearRegression::predict(Eigen::MatrixXf input) {
     inputWithBias.col(0) = Eigen::VectorXf::Ones(input.rows());
     inputWithBias.block(0,1,input.rows(), input.cols()) = input;
     return inputWithBias * theta;
+}
+
+void LinearRegression::saveModel(const std::string &path) {
+    std::ofstream out(path, std::ios::out | std::ios::binary);
+    if (!out.is_open()) {
+        throw std::runtime_error("Unable to open file for writing: " + path);
+    }
+
+    // Write the size of the matrix first
+    auto rows = theta.rows(), cols = theta.cols();
+    out.write(reinterpret_cast<char*>(&rows), sizeof(rows));
+    out.write(reinterpret_cast<char*>(&cols), sizeof(cols));
+
+    // Write the matrix data
+    out.write(reinterpret_cast<char*>(theta.data()), rows * cols * sizeof(float));
+
+    out.close();
+}
+
+void LinearRegression::loadModel(const std::string &path) {
+    std::ifstream in(path, std::ios::in | std::ios::binary);
+    if (!in.is_open()) {
+        throw std::runtime_error("Unable to open file for reading: " + path);
+    }
+
+    // Read the size of the matrix
+    Eigen::Index rows, cols;
+    in.read(reinterpret_cast<char*>(&rows), sizeof(rows));
+    in.read(reinterpret_cast<char*>(&cols), sizeof(cols));
+
+    // Resize theta and load the data
+    theta.resize(rows, cols);
+    in.read(reinterpret_cast<char*>(theta.data()), rows * cols * sizeof(float));
+
+    in.close();
 }
 
 float LinearRegression::cost() {
